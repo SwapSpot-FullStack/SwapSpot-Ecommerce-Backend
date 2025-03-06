@@ -14,10 +14,10 @@ app.use(cors());
 app.use(express.json());
 
 
-app.use("/api/users", require(path.join(__dirname, "src", "routes", "userRoutes")));
-app.use("/api/listings", require(path.join(__dirname, "src", "routes", "listingRoutes")));
-app.use("/api/messages", require(path.join(__dirname, "src", "routes", "messageRoutes")));
-app.use("/api/transactions", require(path.join(__dirname, "src", "routes", "transactionRoutes")));
+app.use("/api/users", require("./src/routes/userRoutes"));
+app.use("/api/listings", require("./src/routes/listingRoutes"));
+app.use("/api/messages", require("./src/routes/messageRoutes"));
+app.use("/api/transactions", require("./src/routes/transactionRoutes"));
 
 // Test Route
 app.get("/", (req, res) => {
