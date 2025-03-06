@@ -14,7 +14,7 @@ Built with:
 - Secure transactions and payments
 - API documentation with Postman
 
-## Installation 🛠️
+## Installation
 1. Clone the repo:
    ```bash
    git clone https://github.com/SwapSpot-Tech/swapspot-backend.git
@@ -34,13 +34,19 @@ JWT_SECRET=your_jwt_secret
 npm run dev
 Server will run at http://localhost:5001/
 
-## Testing API with Postman 🧪
+## Testing API with Postman
 1. Install [Postman](https://www.postman.com/downloads/)
 2. Import the provided **Postman Collection** (coming soon).
 3. Test the API endpoints!
 
-## Contributing 🤝
+## Contributing
 Want to contribute? Feel free to fork the repo and submit a pull request.
 
-## License 📜
+## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Author
+[Declan Whitty](https://github.com/declan-whitty)
+
+## Collaborators
+[Niklas Frost](https://github.com/nikthebest3)
