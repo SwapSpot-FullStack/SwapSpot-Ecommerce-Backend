@@ -3,9 +3,9 @@
 This is the backend API for SwapSpot, a marketplace platform. It provides authentication, user management, listings, transactions, and messaging services.
 
 Built with:
-- **Node.js & Express** for the server
-- **MongoDB** for the database
-- **JWT Authentication** for secure user sessions
+- **Node.js & Express** Backend Framework
+- **MongoDB** Database
+- **JWT Authentication** secure user sessions
 
 ## Features
 - User authentication (Register/Login)
@@ -21,26 +21,26 @@ Built with:
    cd swapspot-backend
 
 2. Install dependencies:
-npm install
+    ```bash
+    npm install
 
 3. Set up environment variables:
 - Create a .env file in the root directory
 - Add the following:
-PORT=5001
-MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/swapspot
-JWT_SECRET=your_jwt_secret
+    ```bash
+    PORT=5001
+    MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/swapspot
+    JWT_SECRET=your_jwt_secret
 
 4. Start the server:
-npm run dev
-Server will run at http://localhost:5001/
+    ```bash
+    npm run dev
+- Server will run at http://localhost:5001/
 
 ## Testing API with Postman
 1. Install [Postman](https://www.postman.com/downloads/)
 2. Import the provided **Postman Collection** (coming soon).
 3. Test the API endpoints!
-
-## Contributing
-Want to contribute? Feel free to fork the repo and submit a pull request.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
