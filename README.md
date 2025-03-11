@@ -22,7 +22,7 @@ Built with:
 
 2. Install dependencies:
     ```bash
-    npm install
+    pnpm install
 
 3. Set up environment variables:
 - Create a .env file in the root directory
@@ -34,7 +34,7 @@ Built with:
 
 4. Start the server:
     ```bash
-    npm run dev
+    pnpm run dev
 - Server will run at http://localhost:5001/
 
 ## Testing API with Postman
