@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
 /**
  * Middleware to protect routes with JWT authentication
@@ -29,4 +29,4 @@ const protect = (req, res, next) => {
   }
 };
 
-export default protect;
+module.exports = protect;
