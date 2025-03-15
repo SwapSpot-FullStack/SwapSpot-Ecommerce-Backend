@@ -6,7 +6,7 @@ const listingSchema = new mongoose.Schema(
     title: {
       type: String,
       required: [true, "❌ Title is required"], // Validation with error message
-      trim: true, // ✅ Removes unnecessary whitespace
+      trim: true, // Removes unnecessary whitespace
       minlength: [3, "❌ Title must be at least 3 characters"], // Prevents too-short titles
       maxlength: [100, "❌ Title must be under 100 characters"], // Prevents overly long titles
     },
