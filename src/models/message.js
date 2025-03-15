@@ -15,10 +15,10 @@ const messageSchema = new mongoose.Schema(
     },
     content: {
       type: String,
-      required: [true, "❌ Message content is required"], // ✅ Prevents empty messages
+      required: [true, "❌ Message content is required"], // Prevents empty messages
       trim: true,
-      minlength: [1, "❌ Message cannot be empty"], // ✅ Prevents blank messages
-      maxlength: [500, "❌ Message must be under 500 characters"], // ✅ Prevents excessively long messages
+      minlength: [1, "❌ Message cannot be empty"], // Prevents blank messages
+      maxlength: [500, "❌ Message must be under 500 characters"], // Prevents excessively long messages
     },
   },
   { timestamps: true } // Automatically adds createdAt & updatedAt
