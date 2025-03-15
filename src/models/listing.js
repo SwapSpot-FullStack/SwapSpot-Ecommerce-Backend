@@ -23,7 +23,7 @@ const listingSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // ✅ Links listing to the user who created it
+      ref: "User", // Links listing to the user who created it
       required: true,
     },
   },
