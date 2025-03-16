@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
 const protect = require("../middleware/authMiddleware"); // Protects routes using JWT
 const Message = require("../models/message"); // Import Message model
@@ -8,7 +9,7 @@ const Message = require("../models/message"); // Import Message model
  * @route GET /api/messages
  * @access Private
  */
-router.get("/", protect, async (req, res) => {
+router.get("/", protect, async (req, res, next) => {
   try {
     console.log(`🟢 Fetching messages for user: ${req.user.id}`);
 
@@ -24,8 +25,7 @@ router.get("/", protect, async (req, res) => {
     console.log(`✅ Retrieved ${messages.length} messages`);
     res.json(messages);
   } catch (error) {
-    console.error("❌ Error fetching messages:", error.message);
-    res.status(500).json({ message: "Server error", error: error.message });
+    next(error); // Use centralized error handler
   }
 });
 
@@ -34,19 +34,25 @@ router.get("/", protect, async (req, res) => {
  * @route POST /api/messages
  * @access Private
  */
-router.post("/", protect, async (req, res) => {
+router.post("/", protect, async (req, res, next) => {
   try {
     console.log("🟢 Creating a new message...", req.body);
 
     const { receiver, content } = req.body;
 
-    if (!receiver || !content) {
-      console.warn("⚠️ Missing receiver or content.");
-      return res
-        .status(400)
-        .json({ message: "Receiver and message content are required" });
+    // Validate receiver ID format
+    if (!mongoose.Types.ObjectId.isValid(receiver)) {
+      return res.status(400).json({ message: "Invalid receiver ID" });
     }
 
+    // Validate message content
+    if (!content.trim() || content.length > 500) {
+      return res
+        .status(400)
+        .json({ message: "Message must be between 1-500 characters" });
+    }
+
+    // Create and save message
     const message = await Message.create({
       sender: req.user.id,
       receiver,
@@ -56,8 +62,7 @@ router.post("/", protect, async (req, res) => {
     console.log(`✅ Message sent successfully: ${message._id}`);
     res.status(201).json({ message: "Message sent successfully", message });
   } catch (error) {
-    console.error("❌ Error sending message:", error.message);
-    res.status(500).json({ message: "Server error", error: error.message });
+    next(error); // Use centralized error handler
   }
 });
 
@@ -66,9 +71,11 @@ router.post("/", protect, async (req, res) => {
  * @route DELETE /api/messages/:id
  * @access Private
  */
-router.delete("/:id", protect, async (req, res) => {
+router.delete("/:id", protect, async (req, res, next) => {
   try {
-    console.log(`🟢 Deleting message ID: ${req.params.id}`);
+    console.log(
+      `🟢 User ${req.user.id} attempting to delete message ID: ${req.params.id}`
+    );
 
     const message = await Message.findById(req.params.id);
 
@@ -78,7 +85,9 @@ router.delete("/:id", protect, async (req, res) => {
     }
 
     if (message.sender.toString() !== req.user.id) {
-      console.warn("🚫 Unauthorized delete attempt.");
+      console.warn(
+        `🚫 Unauthorized attempt by user ${req.user.id} to delete message ${req.params.id}`
+      );
       return res
         .status(403)
         .json({ message: "Not authorized to delete this message" });
@@ -88,8 +97,7 @@ router.delete("/:id", protect, async (req, res) => {
     console.log(`✅ Message deleted: ${req.params.id}`);
     res.json({ message: "Message deleted successfully" });
   } catch (error) {
-    console.error("❌ Error deleting message:", error.message);
-    res.status(500).json({ message: "Server error", error: error.message });
+    next(error); // Use centralized error handler
   }
 });
 
