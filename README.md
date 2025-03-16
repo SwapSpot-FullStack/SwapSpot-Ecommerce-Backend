@@ -1,6 +1,6 @@
 # SwapSpot Ecommerce (Backend)
 
-This is the backend API for SwapSpot, a marketplace platform. It provides authentication, user management, listings, transactions, and messaging services.
+Welcome! This is the backend API part of my full stack web application SwapSpot. SwapSpot is intended to be a marketplace platform. In here you will find provides authentication, user management, listings, transactions, and messaging services.
 
 ## Built with:
 
@@ -13,11 +13,11 @@ This is the backend API for SwapSpot, a marketplace platform. It provides authen
 ## Code Style & Best Practices
 
 - This project follows the **[JavaScript Standard Style](https://standardjs.com/)**.
-- DRY (Don’t Repeat Yourself) principles are applied using **modular controllers, middleware, and reusable functions**.
+- DRY (Don’t Repeat Yourself) principles are applied by using **modular controllers, middleware, and reusable functions**.
 
 ## Technologies Used
 
-SwapSpot's backend is built using modern technologies to ensure **scalability, security, and performance**. Below is an overview of why each technology was chosen:
+SwapSpot's backend is built using various technologies. Below is an overview of why each technology was chosen, industry examples, pros & cons and licensing:
 
 ### **Backend Framework: Node.js & Express**
 
@@ -80,7 +80,7 @@ SwapSpot's backend is built using modern technologies to ensure **scalability, s
 
 ## Error Handling
 
-- The application uses **custom error middleware** to handle **400, 401, 403, 404, and 500 status codes**.
+- I have used **custom error middleware** to handle **400, 401, 403, 404, and 500 status codes**.
 - Errors are logged using **console logging for debugging**.
 - Incorrect input is caught via **express-validator** before reaching the database.
 
