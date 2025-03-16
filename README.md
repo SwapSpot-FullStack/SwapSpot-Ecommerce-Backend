@@ -12,7 +12,7 @@ This is the backend API for SwapSpot, a marketplace platform. It provides authen
 
 ## Code Style & Best Practices
 
-- This project follows the **[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)**.
+- This project follows the **[JavaScript Standard Style](https://standardjs.com/)**.
 - DRY (Don’t Repeat Yourself) principles are applied using **modular controllers, middleware, and reusable functions**.
 
 ## Technologies Used
