@@ -11,7 +11,20 @@ const {
  * @route POST /api/transactions
  * @access Private (Requires Authentication)
  */
-router.post("/", protect, createTransaction);
+router.post(
+  "/",
+  protect,
+  [
+    body("buyer").notEmpty().withMessage("Buyer ID is required"),
+    body("listing").notEmpty().withMessage("Listing ID is required"),
+    body("trackingNumber")
+      .optional()
+      .isString()
+      .withMessage("Tracking number must be a string"),
+  ],
+  validateRequest, // Ensure validation before proceeding
+  createTransaction
+);
 
 /**
  * @desc Get all transactions for the authenticated user

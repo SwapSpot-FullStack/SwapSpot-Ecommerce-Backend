@@ -34,37 +34,50 @@ router.get("/", protect, async (req, res, next) => {
  * @route POST /api/messages
  * @access Private
  */
-router.post("/", protect, async (req, res, next) => {
-  try {
-    console.log("🟢 Creating a new message...", req.body);
+router.post(
+  "/",
+  protect,
+  [
+    body("receiver").notEmpty().withMessage("Receiver ID is required"),
+    body("content")
+      .notEmpty()
+      .withMessage("Message content cannot be empty")
+      .isLength({ max: 500 })
+      .withMessage("Message must be under 500 characters"),
+  ],
+  validateRequest, // Ensure validation before proceeding
+  async (req, res, next) => {
+    try {
+      console.log("🟢 Creating a new message...", req.body);
 
-    const { receiver, content } = req.body;
+      const { receiver, content } = req.body;
 
-    // Validate receiver ID format
-    if (!mongoose.Types.ObjectId.isValid(receiver)) {
-      return res.status(400).json({ message: "Invalid receiver ID" });
+      // Validate receiver ID format
+      if (!mongoose.Types.ObjectId.isValid(receiver)) {
+        return res.status(400).json({ message: "Invalid receiver ID" });
+      }
+
+      // Validate message content
+      if (!content.trim() || content.length > 500) {
+        return res
+          .status(400)
+          .json({ message: "Message must be between 1-500 characters" });
+      }
+
+      // Create and save message
+      const message = await Message.create({
+        sender: req.user.id,
+        receiver,
+        content,
+      });
+
+      console.log(`✅ Message sent successfully: ${message._id}`);
+      res.status(201).json({ message: "Message sent successfully", message });
+    } catch (error) {
+      next(error); // Use centralized error handler
     }
-
-    // Validate message content
-    if (!content.trim() || content.length > 500) {
-      return res
-        .status(400)
-        .json({ message: "Message must be between 1-500 characters" });
-    }
-
-    // Create and save message
-    const message = await Message.create({
-      sender: req.user.id,
-      receiver,
-      content,
-    });
-
-    console.log(`✅ Message sent successfully: ${message._id}`);
-    res.status(201).json({ message: "Message sent successfully", message });
-  } catch (error) {
-    next(error); // Use centralized error handler
   }
-});
+);
 
 /**
  * @desc Delete a message (Only sender can delete)
