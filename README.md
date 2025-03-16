@@ -1,6 +1,8 @@
 # SwapSpot Ecommerce (Backend)
 
-Welcome! This is the backend API part of my full stack web application SwapSpot. SwapSpot is intended to be a marketplace platform. In here you will find provides authentication, user management, listings, transactions, and messaging services.
+Welcome! This is the backend API for my SwapSpot Project, a\it is intended to be a full-stack, ecommerce marketplace platform. SwapSpot enables secure transactions between users, offering features such as user authentication, listing management, messaging, and payments.
+
+This README provides all necessary information on how to set up, run, and test the backend services.
 
 ## Built with:
 
