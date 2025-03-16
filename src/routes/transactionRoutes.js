@@ -1,6 +1,8 @@
 const express = require("express");
+const { body } = require("express-validator"); // Import body validator
 const router = express.Router();
 const protect = require("../middleware/authMiddleware"); // Import authentication middleware
+const { validateRequest } = require("../middleware/validationMiddleware"); // Import validation
 const {
   createTransaction,
   getTransactions,
