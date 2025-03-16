@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
-const protect = require("../middleware/authMiddleware"); // Import middleware
+const protect = require("../middleware/authMiddleware");
+const { validateRequest } = require("../middleware/validationMiddleware");
+const { body } = require("express-validator");
 
 // User Registration Route
 router.post("/register", (req, res) => {
