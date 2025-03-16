@@ -27,15 +27,6 @@ const createListing = async (req, res, next) => {
     console.log("🟢 Creating a new listing...");
     const { title, price, description } = req.body;
 
-    // Ensure all fields are provided
-    if (!title || !price || !description) {
-      console.error("❌ Missing required fields.");
-      return res.status(400).json({
-        message: "All fields (title, price, description) are required",
-      });
-    }
-
-    // Create & Save Listing
     const listing = await Listing.create({
       title,
       price,
