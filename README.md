@@ -133,7 +133,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Author
 
 [Declan Whitty](https://github.com/declan-whitty)
-
-## Collaborators
-
-[Niklas Frost](https://github.com/nikthebest3)
